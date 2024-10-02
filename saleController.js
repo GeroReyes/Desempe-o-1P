@@ -11,7 +11,6 @@ class SaleController {
           sale.id,
           detail.product_name,
           detail.quantity,
-          detail.price
         );
       }
       res.status(201).json({ sale, details });
