@@ -1,33 +1,33 @@
 const Productos = require('../models/ProductosModel');
-const { response } = require('express'); // Importa el modelo de productos desde el archivo '../models/ProductosModel'
-const ExcelJS = require('exceljs'); // Importa la biblioteca ExcelJS, que permite la creación y manipulación de archivos de Excel
+const { response } = require('express'); 
+const ExcelJS = require('exceljs'); 
 
 class ProductosController {
 
     // Método para obtener todos los productos
     static async getAllProductos(req, res) {
         try {
-            const productos = await Productos.findAll(); // Busca todos los productos en la base de datos
-            res.json(productos); // Devuelve la lista de productos en formato JSON
+            const productos = await Productos.findAll(); 
+            res.json(productos); 
         } catch (error) {
-            res.status(500).json({ error: error.message }); // En caso de error, devuelve un código 500 y un mensaje de error
+            res.status(500).json({ error: error.message }); 
         }
     }
 
     // Método para crear un nuevo producto
     static async createProductos(req, res) {
         try {
-            const producto = await Productos.create(req.body); // Crea un producto en la base de datos con los datos proporcionados en el cuerpo de la solicitud
-            res.status(201).json(producto); // Devuelve el producto creado con un estado HTTP 201 (creado)
+            const producto = await Productos.create(req.body); 
+            res.status(201).json(producto); 
         } catch (error) {
-            res.status(500).json({ error: error.message }); // En caso de error, devuelve un código 500 y un mensaje de error
+            res.status(500).json({ error: error.message }); 
         }
     }
 
     // Método para obtener un producto por su ID
     static async getProductosById(req, res) {
         try {
-            const producto = await Productos.findById(req.params.id); // Busca un producto por ID
+            const producto = await Productos.findById(req.params.id); 
             if (!producto) {
                 return res.status(404).json({ message: "Producto no encontrado" }); // Si no se encuentra el producto, devuelve un código 404
             }
